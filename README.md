@@ -7,5 +7,3 @@ st128375@student.spbu.ru
 RPG card game with simple AI
 ## Build 
 make
-## Run
-./start
