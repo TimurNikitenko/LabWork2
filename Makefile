@@ -1,3 +1,5 @@
+
+
 PROJECT = game
 
 LIBPROJECT = $(PROJECT).a

@@ -1,3 +1,6 @@
+/* Timur Nikitenko st128375@student.spbu.ru
+ */
+
 #include <gtest/gtest.h>
 #include "main.h"
 
