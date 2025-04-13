@@ -1,3 +1,6 @@
-/* Timur Nikitenko st128375@student.spbu.ru
- */
+#ifndef MAIN_H
+#define MAIN_H
 
+void play();
+
+#endif
