@@ -20,30 +20,36 @@ DEPS = $(wildcard *.h)
 
 OBJ = main.o
 
-TEST-OBJ = tests.o
+TEST_OBJ = test.o
 
-.PHONY: default
+.PHONY: default all build-tests run-tests clean cleanall
 
 default: all
 
 %.o: %.cpp $(DEPS)
 	$(CXX) -c -o $@ $< $(CCXFLAGS)
 
+
 $(LIBPROJECT): $(OBJ)
 	$(A) $(AFLAGS) $@ $^
 
-$(TESTPROJECT): $(LIBPROJECT) $(TEST-OBJ)
-	$(CXX) -o $@ $(TEST-OBJ) $(LDGTESTFLAGS)
+
+$(TESTPROJECT): $(LIBPROJECT) $(TEST_OBJ)
+	$(CXX) -o $@ $(TEST_OBJ) $(LDGTESTFLAGS)
+
 
 build-tests: $(TESTPROJECT)
 
-run-tests: $(TESTPROJECT)
+run-tests: build-tests
 	./$(TESTPROJECT)
+
 
 all: $(LIBPROJECT) build-tests
 
+
 clean:
 	rm -f *.o
+
 
 cleanall: clean
 	rm -f $(LIBPROJECT)
