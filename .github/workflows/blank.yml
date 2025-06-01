@@ -15,13 +15,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      
       - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y cmake build-essential libgtest-dev
 
-      
       - name: Build gtest
         run: |
           cd /usr/src/gtest
@@ -29,10 +27,7 @@ jobs:
           sudo make
           sudo cp lib/*.a /usr/lib
 
-
-      
-      - name: make
-        run: make
-
-      - name: check
-        run: ctest --output-on-failure
+      - name: Build and run tests
+        run: |
+          make all
+          make run-tests

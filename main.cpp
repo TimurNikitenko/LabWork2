@@ -1,10 +1,15 @@
 /* Timur Nikitenko st128375@student.spbu.ru
- * main function for second labwork
  */
 
-#include "main.h"
+ #include "main.h"
+ #include <iostream>
 
-
-int main() {
-
-};
+void play() {
+    std::cout << "Play function called\n";
+}
+ 
+ int main() {
+     std::cout << "Game running \n"; 
+     play(); 
+     return 0;
+ }

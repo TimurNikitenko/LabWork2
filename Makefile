@@ -1,50 +1,40 @@
 PROJECT = game
-
 LIBPROJECT = $(PROJECT).a
-
 TESTPROJECT = test
 
 CXX = g++
+AR = ar
+ARFLAGS = rsv
 
-A = ar
-
-AFLAGS = rsv
-
-CCXFLAGS = -I. -std=c++17 -Wall -Wextra -g -pthread
-
-LDXXFLAGS = $(CCXFLAGS) -L. -l:$(LIBPROJECT)
-
-LDGTESTFLAGS = $(LDXXFLAGS) -lgtest -lgtest_main -lpthread
+CXXFLAGS = -I. -std=c++17 -Wall -Wextra -g -pthread
+LDXXFLAGS = $(CXXFLAGS) -L.
+LDGTESTFLAGS = -lgtest -lgtest_main -lpthread
 
 DEPS = $(wildcard *.h)
-
 OBJ = main.o
+TEST_OBJ = test.o
 
-TEST-OBJ = tests.o
+.PHONY: all build-tests run-tests clean cleanall
 
-.PHONY: default
+$(PROJECT): $(OBJ)
+	$(CXX) -o $@ $^ $(LDXXFLAGS)
 
-default: all
+all: $(PROJECT) $(TESTPROJECT)
 
 %.o: %.cpp $(DEPS)
-	$(CXX) -c -o $@ $< $(CCXFLAGS)
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
 $(LIBPROJECT): $(OBJ)
-	$(A) $(AFLAGS) $@ $^
+	$(AR) $(ARFLAGS) $@ $^
 
-$(TESTPROJECT): $(LIBPROJECT) $(TEST-OBJ)
-	$(CXX) -o $@ $(TEST-OBJ) $(LDGTESTFLAGS)
-
-build-tests: $(TESTPROJECT)
+$(TESTPROJECT): $(TEST_OBJ) $(LIBPROJECT)
+	$(CXX) -o $@ $(TEST_OBJ) $(LDXXFLAGS) $(LDGTESTFLAGS)
 
 run-tests: $(TESTPROJECT)
-	./$(TESTPROJECT)
-
-all: $(LIBPROJECT) build-tests
+	./$(TESTPROJECT) --gtest_color=yes
 
 clean:
 	rm -f *.o
 
 cleanall: clean
-	rm -f $(LIBPROJECT)
-	rm -f $(TESTPROJECT)
+	rm -f $(LIBPROJECT) $(TESTPROJECT) $(PROJECT)
