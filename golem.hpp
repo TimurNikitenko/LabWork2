@@ -10,5 +10,6 @@ public:
         health_ -= std::max(1, amount - 1); // Always takes at least 1 less
     }
     std::unique_ptr<Creature> clone() const override;
+    void on_play(Player& owner) override;
 };
 #endif
