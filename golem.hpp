@@ -9,5 +9,6 @@ public:
     void take_damage(int amount) {
         health_ -= std::max(1, amount - 1); // Always takes at least 1 less
     }
+    std::unique_ptr<Creature> clone() const override;
 };
 #endif

@@ -1,3 +1,5 @@
 #include "griffin.hpp"
 
-// Constructor and methods are already defined in header
+std::unique_ptr<Creature> Griffin::clone() const {
+    return std::make_unique<Griffin>(*this);
+}

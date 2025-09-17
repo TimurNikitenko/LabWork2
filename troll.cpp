@@ -1,3 +1,5 @@
 #include "troll.hpp"
 
-// Constructor and methods are already defined in header
+std::unique_ptr<Creature> Troll::clone() const {
+    return std::make_unique<Troll>(*this);
+}

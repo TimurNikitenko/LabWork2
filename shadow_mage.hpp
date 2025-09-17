@@ -4,7 +4,8 @@
 
 class ShadowMage : public Creature {
 public:
-    ShadowMage() : Creature("Shadow Mage", 5, 3, 3, Element::None) {}
-    void on_attack(Creature& target) override;
+    ShadowMage() : Creature("Shadow Mage", 4, 3, 2, Element::None) {}
+
+    std::unique_ptr<Creature> clone() const override;
 };
 #endif

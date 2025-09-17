@@ -1,5 +1,5 @@
 #include "fairy.hpp"
-#include "player.hpp"
 
-// Constructor is already defined in header
-// void Fairy::on_play() is already defined in header
+std::unique_ptr<Creature> Fairy::clone() const {
+    return std::make_unique<Fairy>(*this);
+}

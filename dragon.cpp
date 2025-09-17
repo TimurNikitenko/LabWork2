@@ -1,5 +1,5 @@
 #include "dragon.hpp"
-#include "game.hpp"
 
-// Constructor is already defined in header
-// void Dragon::on_death() is already defined in header
+std::unique_ptr<Creature> Dragon::clone() const {
+    return std::make_unique<Dragon>(*this);
+}

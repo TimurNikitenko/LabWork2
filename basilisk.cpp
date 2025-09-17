@@ -1,5 +1,6 @@
 #include "basilisk.hpp"
+#include <iostream>
 
-void Basilisk::on_attack(Creature& target) {
-    // TODO: Implement petrify effect
+std::unique_ptr<Creature> Basilisk::clone() const {
+    return std::make_unique<Basilisk>(*this);
 }

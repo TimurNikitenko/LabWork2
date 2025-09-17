@@ -1,3 +1,5 @@
 #include "golem.hpp"
 
-// Constructor and take_damage method are already defined in header
+std::unique_ptr<Creature> Golem::clone() const {
+    return std::make_unique<Golem>(*this);
+}

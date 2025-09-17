@@ -6,8 +6,6 @@ class Dragon : public Creature {
 public:
     Dragon() : Creature("Dragon", 4, 5, 4, Element::Fire) {}
 
-    void on_death() override {
-        // TODO: Implement AOE damage on death
-    }
+    std::unique_ptr<Creature> clone() const override;
 };
 #endif

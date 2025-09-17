@@ -4,9 +4,8 @@
 
 class Siren : public Creature {
 public:
-    Siren() : Creature("Siren", 4, 2, 5, Element::Water) {}
-    void on_play(Player& owner) override {
-        // TODO: Implement enemy weakening effect
-    }
+    Siren() : Creature("Siren", 3, 2, 4, Element::Water) {}
+
+    std::unique_ptr<Creature> clone() const override;
 };
 #endif

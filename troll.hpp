@@ -4,14 +4,8 @@
 
 class Troll : public Creature {
 public:
-    Troll() : Creature("Troll", 3, 2, 6, Element::Earth) {}
-    
-    void on_play(Player& owner) override {
-        // TODO: Implement can't attack immediately effect
-    }
-    
-    void end_turn() {
-        // TODO: Implement end turn effect
-    }
+    Troll() : Creature("Troll", 2, 2, 4, Element::Earth) {}
+
+    std::unique_ptr<Creature> clone() const override;
 };
 #endif

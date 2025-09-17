@@ -4,7 +4,8 @@
 
 class Wizard : public Creature {
 public:
-    Wizard() : Creature("Wizard", 3, 1, 3, Element::Fire) {}
-    void on_play(Player& owner) override;
+    Wizard() : Creature("Wizard", 3, 1, 3, Element::None) {}
+
+    std::unique_ptr<Creature> clone() const override;
 };
 #endif

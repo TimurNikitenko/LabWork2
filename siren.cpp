@@ -1,3 +1,5 @@
 #include "siren.hpp"
 
-// Constructor and methods are already defined in header
+std::unique_ptr<Creature> Siren::clone() const {
+    return std::make_unique<Siren>(*this);
+}

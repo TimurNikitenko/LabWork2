@@ -1,5 +1,5 @@
 #include "phoenix.hpp"
 
-void Phoenix::on_death() {
-    // TODO: Implement resurrection effect
+std::unique_ptr<Creature> Phoenix::clone() const {
+    return std::make_unique<Phoenix>(*this);
 }

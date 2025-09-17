@@ -4,11 +4,8 @@
 
 class Fairy : public Creature {
 public:
-    Fairy() : Creature("Fairy", 1, 1, 3, Element::Water) {}
+    Fairy() : Creature("Fairy", 2, 1, 3, Element::Air) {}
 
-    void on_play(Player& owner) override {
-        // TODO: Implement mana stealing effect
-    }
+    std::unique_ptr<Creature> clone() const override;
 };
 #endif
-
