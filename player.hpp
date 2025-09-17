@@ -37,7 +37,9 @@ public:
 
     // ---------- Mana ----------
     void refresh_mana(int turn_number) { 
-        max_mana_ = std::min(turn_number, 10);  // Max mana = turn number, caps at 10
+        base_max_mana_ = std::min(turn_number, 10);  // Natural progression
+        max_mana_ = base_max_mana_ + mana_modifier_;  // Apply creature modifications
+        max_mana_ = std::max(0, max_mana_);  // Ensure non-negative
         mana_ = max_mana_;  // Refill mana to max
     }
     void use_mana(int amount);
@@ -70,6 +72,8 @@ private:
     int health_;
     int mana_ = 0;
     int max_mana_ = 0;
+    int base_max_mana_ = 0;  // Natural mana progression (turn-based)
+    int mana_modifier_ = 0;  // Modifications from creature abilities
     std::vector<std::unique_ptr<Card>> hand_;
     std::vector<std::unique_ptr<Creature>> board_;
     std::vector<std::unique_ptr<Artifact>> artifacts_;

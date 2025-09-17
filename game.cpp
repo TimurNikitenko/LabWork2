@@ -45,8 +45,10 @@ void Game::process_turn() {
     // 2. Play Phase
     play_phase(active_player);
     
-    // 3. Attack Phase
-    attack_phase(active_player);
+    // 3. Attack Phase (only for human player, AI attacks in ai_take_turn)
+    if (&active_player == &human_) {
+        attack_phase(active_player);
+    }
     
     // Check for win conditions
     if (check_win_conditions()) {
@@ -66,6 +68,11 @@ void Game::draw_phase(Player& player) {
 
 
 void Game::attack_phase(Player& player) {
+    // Don't execute attacks if game is already over
+    if (game_over_) {
+        return;
+    }
+    
     Player& opponent = (&player == &human_) ? ai_ : human_;
     
     // Collect attacks first to avoid modifying board during iteration
@@ -165,6 +172,11 @@ void Game::attack_phase(Player& player) {
         auto& attack_pair = player_attacks[i];
         std::cout << attack_pair.first->name_ << " attacks opponent directly!" << std::endl;
         attack_player(*attack_pair.first, *attack_pair.second);
+        
+        // Check win conditions immediately after each attack
+        if (check_win_conditions()) {
+            return; // Stop all attacks if game is over
+        }
     }
 }
 
@@ -217,11 +229,6 @@ void Game::attack_player(Creature& attacker, Player& target) {
     attacker.can_attack_ = false; 
     std::cout << attacker.name_ << " deals " << attacker.attack_ 
               << " damage to opponent" << std::endl;
-    
-    // Check win conditions immediately after dealing damage
-    if (check_win_conditions()) {
-        return;
-    }
 }
 
 Creature* Game::spawn_creature(std::unique_ptr<Creature> creature, Player& owner) {
@@ -612,8 +619,18 @@ void Game::ai_take_turn() {
         auto& attack_pair = player_attacks[i];
         std::cout << attack_pair.first->name_ << " attacks you directly!" << std::endl;
         attack_player(*attack_pair.first, *attack_pair.second);
+        
+        // Check win conditions immediately after each attack
+        if (check_win_conditions()) {
+            return; // Stop all attacks if game is over
+        }
     }
     
     std::cout << "AI ends turn." << std::endl;
+    
+    // Check win conditions after all attacks are complete
+    if (check_win_conditions()) {
+        return;
+    }
 }
 

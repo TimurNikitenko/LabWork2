@@ -54,8 +54,10 @@ void Player::modify_mana(int amount) {
 }
 
 void Player::increase_max_mana(int amount) {
-    max_mana_ = std::max(0, std::min(10, max_mana_ + amount));
-    mana_ = std::min(mana_, max_mana_);
+    mana_modifier_ += amount;  // Modify the modifier instead of max_mana directly
+    max_mana_ = base_max_mana_ + mana_modifier_;  // Recalculate max_mana
+    max_mana_ = std::max(0, max_mana_);  // Ensure non-negative
+    mana_ = std::min(mana_, max_mana_);  // Adjust current mana if needed
 }
 
 // Combat
