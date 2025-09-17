@@ -12,13 +12,20 @@ void Fairy::on_play(Player& owner) {
     Game& game = Game::get();
     Player& opponent = (&owner == &game.human()) ? game.ai() : game.human();
     
-    // Steal 1 current mana from opponent (temporary but immediate impact)
-    int stolen_mana = std::min(1, opponent.mana());
-    if (stolen_mana > 0) {
-        opponent.modify_mana(-stolen_mana);
-        owner.modify_mana(stolen_mana);
-        std::cout << "Fairy steals " << stolen_mana << " mana from " << opponent.name() << "!" << std::endl;
+    // Steal 2 max mana from opponent (permanent effect) - more visible impact
+    if (opponent.max_mana() >= 2) {
+        opponent.increase_max_mana(-2);  // Reduce opponent's max mana by 2
+        owner.increase_max_mana(2);      // Increase owner's max mana by 2
+        std::cout << "Fairy's powerful magical theft permanently steals 2 max mana from " 
+                  << opponent.name() << " and gives it to " << owner.name() << "!" << std::endl;
+    } else if (opponent.max_mana() >= 1) {
+        // If opponent only has 1 mana, steal that 1 mana
+        opponent.increase_max_mana(-1);
+        owner.increase_max_mana(1);
+        std::cout << "Fairy's magical theft permanently steals 1 max mana from " 
+                  << opponent.name() << " and gives it to " << owner.name() << "!" << std::endl;
     } else {
-        std::cout << "Fairy tries to steal mana from " << opponent.name() << " but they have no mana to steal!" << std::endl;
+        std::cout << "Fairy tries to steal mana from " << opponent.name() 
+                  << " but they have no max mana to steal!" << std::endl;
     }
 }
