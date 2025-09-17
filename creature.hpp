@@ -2,10 +2,12 @@
 #define CREATURE_HPP
 #include "card.hpp"
 #include "element.hpp"
+#include <memory>
 
 class Creature : public Card {
 public:
     Creature(std::string name, int cost, int attack, int health, Element element);
+    virtual ~Creature() = default;
 
     // Core methods (no getters, direct access)
     void play(Player& owner, Player& opponent, void* target = nullptr) override;
@@ -22,6 +24,9 @@ public:
     virtual void on_play(Player& owner) {}
     virtual void on_attack(Creature& target) {}
     virtual void on_death() {}
+    
+    // Clone method for polymorphic copying
+    virtual std::unique_ptr<Creature> clone() const = 0;
 
     // Public fields for combat (simplified access)
     Element element_;
