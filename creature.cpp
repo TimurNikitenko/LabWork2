@@ -17,7 +17,7 @@ void Creature::play(Player& owner, Player& opponent, void* target) {
 }
 
 void Creature::attack(Creature& target) {
-    if (!can_attack_) return;
+    if (!can_attack_ || petrified_) return;
 
     int damage = attack_ + 
                  ElementUtils::combat_modifier(element_, target.element_);

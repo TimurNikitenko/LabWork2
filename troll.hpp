@@ -7,5 +7,6 @@ public:
     Troll() : Creature("Troll", 2, 2, 4, Element::Earth) {}
 
     std::unique_ptr<Creature> clone() const override;
+    void start_turn() override;  // Troll regenerates 1 health each turn
 };
 #endif

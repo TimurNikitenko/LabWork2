@@ -39,6 +39,13 @@ void Game::process_turn() {
     std::cout << "\n=== " << active_player.name() << "'s Turn ===" << std::endl;
     std::cout << "Mana: " << active_player.mana() << "/" << active_player.max_mana() << std::endl;
     
+    // Clear petrify effects on active player's creatures at start of turn
+    for (size_t i = 0; i < active_player.board().size(); ++i) {
+        if (active_player.board()[i]) {
+            active_player.board()[i]->start_turn();
+        }
+    }
+    
     // 1. Draw Phase
     draw_phase(active_player);
     
@@ -83,12 +90,14 @@ void Game::attack_phase(Player& player) {
         if (creature->can_attack_) {
             // Check for traps
             
-            if (!opponent.board().empty()) {
+            if (!opponent.board().empty() && !creature->can_attack_opponent_directly()) {
+                // Normal creatures must attack enemy creatures if present
                 Creature* target = find_weakest_enemy(opponent);
                 if (target) {
                     creature_attacks.push_back({creature.get(), target});
                 }
             } else {
+                // Flying creatures or when no enemy creatures present - attack opponent directly
                 player_attacks.push_back({creature.get(), &opponent});
             }
         }
@@ -225,6 +234,10 @@ void Game::attack(Creature& attacker, Creature& target) {
 }
 
 void Game::attack_player(Creature& attacker, Player& target) {
+    if (attacker.petrified_) {
+        std::cout << attacker.name_ << " is petrified and cannot attack!" << std::endl;
+        return;
+    }
     target.modify_health(-attacker.attack_);
     attacker.can_attack_ = false; 
     std::cout << attacker.name_ << " deals " << attacker.attack_ 
@@ -498,6 +511,13 @@ void Game::ai_take_turn() {
     
     std::cout << "\n=== AI's Turn ===" << std::endl;
     
+    // Clear petrify effects on AI's creatures at start of turn
+    for (size_t i = 0; i < ai.board().size(); ++i) {
+        if (ai.board()[i]) {
+            ai.board()[i]->start_turn();
+        }
+    }
+    
     // AI Decision Making Phase
     bool played_card = false;
     
@@ -550,14 +570,14 @@ void Game::ai_take_turn() {
     
     for (auto& creature : ai.board()) {
         if (creature->can_attack_) {
-            if (!human.board().empty()) {
-                // Attack weakest enemy creature
+            if (!human.board().empty() && !creature->can_attack_opponent_directly()) {
+                // Normal creatures must attack enemy creatures if present
                 Creature* target = find_weakest_enemy(human);
                 if (target) {
                     creature_attacks.push_back({creature.get(), target});
                 }
             } else {
-                // Attack player directly
+                // Flying creatures or when no enemy creatures present - attack player directly
                 player_attacks.push_back({creature.get(), &human});
             }
         }

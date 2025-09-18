@@ -8,5 +8,6 @@ public:
     Basilisk() : Creature("Basilisk", 3, 3, 5, Element::Earth) {}
 
     std::unique_ptr<Creature> clone() const override;
+    void on_attack(Creature& target) override;
 };
 #endif
