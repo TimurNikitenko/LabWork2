@@ -1,0 +1,47 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classCard.html" title=" " alt="" coords="5,449,57,475"/>
+<area shape="rect" id="Node000001" href="$classArtifact.html" title=" " alt="" coords="109,228,180,253"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="34,435,42,398,56,353,76,306,103,263,116,252,120,256,107,266,80,309,61,355,47,400,39,436"/>
+<area shape="rect" id="Node000002" href="$classCreature.html" title=" " alt="" coords="105,277,184,303"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="46,436,133,302,137,305,51,439"/>
+<area shape="rect" id="Node000013" href="$classSpell.html" title=" " alt="" coords="117,597,172,623"/>
+<area shape="poly" id="edge13_Node000000_Node000013" title=" " alt="" coords="53,484,136,596,132,599,49,488"/>
+<area shape="rect" id="Node000020" href="$classTrap.html" title=" " alt="" coords="120,795,169,820"/>
+<area shape="poly" id="edge20_Node000000_Node000020" title=" " alt="" coords="43,487,142,794,137,795,38,488"/>
+<area shape="rect" id="Node000003" href="$classBasilisk.html" title="Basilisk creature with petrify ability." alt="" coords="261,5,335,31"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="179,267,182,263,197,233,204,205,202,151,200,124,202,97,211,69,230,40,244,29,260,22,262,27,247,33,234,44,216,71,207,98,205,124,207,151,209,206,202,235,186,266,183,270"/>
+<area shape="rect" id="Node000004" href="$classDragon.html" title="Dragon creature with explosion ability." alt="" coords="263,55,333,80"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="179,267,182,263,195,240,201,218,203,176,206,134,214,112,230,89,245,78,262,71,264,76,248,83,234,93,219,114,211,135,208,176,206,219,200,242,186,266,183,270"/>
+<area shape="rect" id="Node000005" href="$classFairy.html" title=" " alt="" coords="271,104,325,129"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="178,267,182,263,193,247,199,231,203,200,209,170,217,155,230,139,249,126,270,118,272,123,252,131,234,143,222,157,214,172,209,201,204,232,197,249,186,266,182,270"/>
+<area shape="rect" id="Node000006" href="$classGolem.html" title=" " alt="" coords="265,153,331,179"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="178,267,182,263,197,243,204,225,213,207,230,188,264,171,266,176,234,192,218,210,209,227,201,246,186,266,181,271"/>
+<area shape="rect" id="Node000007" href="$classGriffin.html" title=" " alt="" coords="267,203,329,228"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="175,268,231,237,266,223,268,228,233,242,178,272"/>
+<area shape="rect" id="Node000008" href="$classPhoenix.html" title=" " alt="" coords="261,252,335,277"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="197,279,260,268,261,273,198,284"/>
+<area shape="rect" id="Node000009" href="$classShadowMage.html" title=" " alt="" coords="243,301,353,327"/>
+<area shape="poly" id="edge9_Node000002_Node000009" title=" " alt="" coords="198,296,244,303,243,308,197,301"/>
+<area shape="rect" id="Node000010" href="$classSiren.html" title=" " alt="" coords="271,351,325,376"/>
+<area shape="poly" id="edge10_Node000002_Node000010" title=" " alt="" coords="180,307,233,336,272,352,269,356,231,340,178,312"/>
+<area shape="rect" id="Node000011" href="$classTroll.html" title=" " alt="" coords="273,400,323,425"/>
+<area shape="poly" id="edge11_Node000002_Node000011" title=" " alt="" coords="165,313,194,350,233,385,274,404,272,409,231,390,191,353,161,316"/>
+<area shape="rect" id="Node000012" href="$classWizard.html" title=" " alt="" coords="265,449,331,475"/>
+<area shape="poly" id="edge12_Node000002_Node000012" title=" " alt="" coords="157,314,186,374,207,407,234,435,265,452,263,456,230,439,203,410,181,377,153,317"/>
+<area shape="rect" id="Node000014" href="$classElementalRift.html" title=" " alt="" coords="243,499,353,524"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="166,586,195,559,231,533,254,522,257,526,233,538,198,563,169,590"/>
+<area shape="rect" id="Node000015" href="$classFireball.html" title=" " alt="" coords="263,548,333,573"/>
+<area shape="poly" id="edge15_Node000013_Node000015" title=" " alt="" coords="184,595,261,569,263,574,186,600"/>
+<area shape="rect" id="Node000016" href="$classHeal.html" title=" " alt="" coords="272,597,324,623"/>
+<area shape="poly" id="edge16_Node000013_Node000016" title=" " alt="" coords="186,607,272,607,272,613,186,613"/>
+<area shape="rect" id="Node000017" href="$classLightningBolt.html" title=" " alt="" coords="244,647,352,672"/>
+<area shape="poly" id="edge17_Node000013_Node000017" title=" " alt="" coords="186,620,259,644,257,649,184,625"/>
+<area shape="rect" id="Node000018" href="$classManaSurge.html" title=" " alt="" coords="251,696,345,721"/>
+<area shape="poly" id="edge18_Node000013_Node000018" title=" " alt="" coords="170,630,199,656,233,681,259,694,257,698,231,686,196,661,166,634"/>
+<area shape="rect" id="Node000019" href="$classPolymorph.html" title=" " alt="" coords="252,745,344,771"/>
+<area shape="poly" id="edge19_Node000013_Node000019" title=" " alt="" coords="160,634,190,683,210,708,234,731,255,743,252,748,230,735,206,712,185,686,156,636"/>
+<area shape="rect" id="Node000021" href="$classElementalBarrier.html" title=" " alt="" coords="232,795,364,820"/>
+<area shape="poly" id="edge21_Node000020_Node000021" title=" " alt="" coords="183,805,232,805,232,810,183,810"/>
+<area shape="rect" id="Node000022" href="$classMirrorForce.html" title=" " alt="" coords="250,844,346,869"/>
+<area shape="poly" id="edge22_Node000020_Node000022" title=" " alt="" coords="184,817,258,841,257,846,182,822"/>
+</map>
