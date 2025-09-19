@@ -23,6 +23,7 @@ public:
     }
     
     void resolve(Player& owner, Player& triggerer) {
+        (void)owner;
         std::cout << "Elemental Barrier activates!\n";
         // Deal 2 damage to opponent
         triggerer.take_damage(2);

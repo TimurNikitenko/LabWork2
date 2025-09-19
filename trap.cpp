@@ -6,6 +6,7 @@ Trap::Trap(std::string name, int cost) : Card(name, cost) {
 }
 
 void Trap::play(Player& owner, Player& opponent, void* target) {
+    (void)opponent; (void)target;
     if (owner.mana() >= cost_) {
         owner.use_mana(cost_);
         owner.set_trap(this); // Register with player
@@ -13,10 +14,12 @@ void Trap::play(Player& owner, Player& opponent, void* target) {
 }
 
 bool Trap::check_trigger(const Player& triggerer) const {
+    (void)triggerer;
     // TODO: Implement trap trigger logic
     return false;
 }
 
 void Trap::resolve(Player& owner, Player& triggerer) {
+    (void)owner; (void)triggerer;
     // TODO: Implement trap resolution logic
 }

@@ -12,6 +12,7 @@ Creature::Creature(std::string name, int cost, int attack, int health, Element e
 
 void Creature::play(Player& owner, Player& opponent, void* target) {
     // Spawn this creature on the owner's board
+    (void)opponent; (void)target;
     auto creature_clone = clone();
     Game::get().spawn_creature(std::move(creature_clone), owner);
 }

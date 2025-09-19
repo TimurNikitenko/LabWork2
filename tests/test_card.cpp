@@ -12,6 +12,7 @@ public:
         : Card(name, cost) {}
     
     void play(Player& owner, Player& opponent, void* target = nullptr) override {
+        (void)owner; (void)opponent; (void)target;
         // Simple test implementation
     }
 };

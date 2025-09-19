@@ -15,6 +15,7 @@ class MirrorForce : public Trap {
         }
     
         void resolve(Player& owner, Player& triggerer) {
+            (void)owner;
             std::cout << "Mirror Force activates!\n";
             // Deal 2 damage to opponent
             triggerer.take_damage(2);

@@ -22,8 +22,8 @@ public:
     virtual void start_turn() { petrified_ = false; }  // Clear petrify at start of creature's turn
 
     // Events (override in derived classes)
-    virtual void on_play(Player& owner) {}
-    virtual void on_attack(Creature& target) {}
+    virtual void on_play(Player& owner) { (void)owner; }
+    virtual void on_attack(Creature& target) { (void)target; }
     virtual void on_death() {}
     virtual bool can_attack_opponent_directly() const { return false; }  // Most creatures can't bypass enemy creatures
     
@@ -31,9 +31,9 @@ public:
     virtual std::unique_ptr<Creature> clone() const = 0;
 
     // Public fields for combat (simplified access)
-    Element element_;
     int attack_;
     int health_;
+    Element element_;
     bool can_attack_ = false;
     bool petrified_ = false;  // Tracks if creature is petrified (can't attack)
 };
