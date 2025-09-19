@@ -1,0 +1,17 @@
+<map id="Spell" name="Spell">
+<area shape="rect" id="Node000001" title=" " alt="" coords="285,79,340,104"/>
+<area shape="rect" id="Node000003" href="$classElementalRift.html" title=" " alt="" coords="5,152,116,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="273,107,102,154,101,149,272,101"/>
+<area shape="rect" id="Node000004" href="$classFireball.html" title=" " alt="" coords="140,152,211,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="280,113,199,154,197,149,277,108"/>
+<area shape="rect" id="Node000005" href="$classHeal.html" title=" " alt="" coords="235,152,287,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="298,117,271,153,267,150,294,114"/>
+<area shape="rect" id="Node000006" href="$classLightningBolt.html" title=" " alt="" coords="311,152,419,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="331,114,358,150,354,153,327,117"/>
+<area shape="rect" id="Node000007" href="$classManaSurge.html" title=" " alt="" coords="443,152,537,177"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="354,106,462,149,460,154,352,111"/>
+<area shape="rect" id="Node000008" href="$classPolymorph.html" title=" " alt="" coords="561,152,653,177"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="354,100,562,150,561,155,353,105"/>
+<area shape="rect" id="Node000002" href="$classCard.html" title=" " alt="" coords="287,5,339,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="315,44,315,79,310,79,310,44"/>
+</map>

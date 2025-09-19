@@ -1,0 +1,35 @@
+# Doxyfile for Wizard's Duel Card Game
+PROJECT_NAME           = "Wizard's Duel Card Game"
+PROJECT_NUMBER         = "1.0"
+PROJECT_BRIEF          = "A C++ console-based card game with strategic creature abilities"
+
+OUTPUT_DIRECTORY       = docs
+OUTPUT_LANGUAGE        = English
+BRIEF_MEMBER_DESC      = YES
+JAVADOC_AUTOBRIEF      = YES
+FULL_PATH_NAMES        = YES
+
+INPUT                  = . architecture_description
+RECURSIVE              = YES
+FILE_PATTERNS          = *.cpp *.hpp *.h *.c *.md
+USE_MDFILE_AS_MAINPAGE = README.md
+
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+SEARCHENGINE           = YES
+GENERATE_TREEVIEW      = NO
+
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+GRAPHICAL_HIERARCHY    = YES
+
+GENERATE_LATEX         = NO
+GENERATE_RTF           = NO
+GENERATE_MAN           = NO
+GENERATE_XML           = NO
+
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = NO
+SEARCH_INCLUDES        = YES

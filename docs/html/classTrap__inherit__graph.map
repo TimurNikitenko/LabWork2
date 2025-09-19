@@ -1,0 +1,9 @@
+<map id="Trap" name="Trap">
+<area shape="rect" id="Node000001" title=" " alt="" coords="116,79,165,104"/>
+<area shape="rect" id="Node000003" href="$classElementalBarrier.html" title=" " alt="" coords="5,152,137,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="122,116,84,154,81,150,118,112"/>
+<area shape="rect" id="Node000004" href="$classMirrorForce.html" title=" " alt="" coords="162,152,258,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="163,112,201,150,197,154,160,116"/>
+<area shape="rect" id="Node000002" href="$classCard.html" title=" " alt="" coords="115,5,167,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,44,143,79,138,79,138,44"/>
+</map>
