@@ -1,50 +1,58 @@
 PROJECT = game
-
 LIBPROJECT = $(PROJECT).a
-
 TESTPROJECT = test
 
 CXX = g++
+AR = ar
+ARFLAGS = rsv
 
-A = ar
+CXXFLAGS = -I. -std=c++17 -Wall -Wextra -g -pthread
+LDXXFLAGS = $(CXXFLAGS) -L.
+LDGTESTFLAGS = -lgtest -lgtest_main -lpthread
 
-AFLAGS = rsv
+# All source files
+SOURCES = main.cpp game.cpp player.cpp deck.cpp creature.cpp spell.cpp trap.cpp \
+          input_handler.cpp basilisk.cpp dragon.cpp fairy.cpp golem.cpp griffin.cpp \
+          phoenix.cpp shadow_mage.cpp siren.cpp troll.cpp wizard.cpp
 
-CCXFLAGS = -I. -std=c++17 -Wall -Wextra -g -pthread
 
-LDXXFLAGS = $(CCXFLAGS) -L. -l:$(LIBPROJECT)
+TEST_LIB_SOURCES = game.cpp player.cpp deck.cpp creature.cpp spell.cpp trap.cpp \
+                   input_handler.cpp basilisk.cpp dragon.cpp fairy.cpp golem.cpp griffin.cpp \
+                   phoenix.cpp shadow_mage.cpp siren.cpp troll.cpp wizard.cpp
 
-LDGTESTFLAGS = $(LDXXFLAGS) -lgtest -lgtest_main -lpthread
+# Object files
+OBJ = $(SOURCES:.cpp=.o)
+TEST_LIB_OBJ = $(TEST_LIB_SOURCES:.cpp=.o)
+TEST_SOURCES = tests/test_card.cpp tests/test_player.cpp tests/test_creature_abilities.cpp tests/test_game_logic.cpp
+TEST_OBJ = tests/test_card.o tests/test_player.o tests/test_creature_abilities.o tests/test_game_logic.o
 
-DEPS = $(wildcard *.h)
+# Dependencies (all header files)
+DEPS = $(wildcard *.hpp *.h)
 
-OBJ = main.o
+.PHONY: all build-tests run-tests clean cleanall test
 
-TEST-OBJ = tests.o
+$(PROJECT): $(OBJ)
+	$(CXX) -o $@ $^ $(LDXXFLAGS)
 
-.PHONY: default
-
-default: all
+all: $(PROJECT) $(TESTPROJECT)
 
 %.o: %.cpp $(DEPS)
-	$(CXX) -c -o $@ $< $(CCXFLAGS)
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
 $(LIBPROJECT): $(OBJ)
-	$(A) $(AFLAGS) $@ $^
+	$(AR) $(ARFLAGS) $@ $^
 
-$(TESTPROJECT): $(LIBPROJECT) $(TEST-OBJ)
-	$(CXX) -o $@ $(TEST-OBJ) $(LDGTESTFLAGS)
+$(TESTPROJECT): $(TEST_OBJ) $(TEST_LIB_OBJ)
+	$(CXX) -o $@ $(TEST_OBJ) $(TEST_LIB_OBJ) $(LDXXFLAGS) $(LDGTESTFLAGS)
 
-build-tests: $(TESTPROJECT)
+test: $(TEST_OBJ) $(TEST_LIB_OBJ)
+	$(CXX) -o $(TESTPROJECT) $(TEST_OBJ) $(TEST_LIB_OBJ) $(LDXXFLAGS) $(LDGTESTFLAGS)
+	./$(TESTPROJECT) --gtest_color=yes
 
-run-tests: $(TESTPROJECT)
-	./$(TESTPROJECT)
-
-all: $(LIBPROJECT) build-tests
+run-tests: test
 
 clean:
-	rm -f *.o
+	rm -f *.o tests/*.o
 
 cleanall: clean
-	rm -f $(LIBPROJECT)
-	rm -f $(TESTPROJECT)
+	rm -f $(LIBPROJECT) $(TESTPROJECT) $(PROJECT)

@@ -1,0 +1,40 @@
+#ifndef CREATURE_HPP
+#define CREATURE_HPP
+#include "card.hpp"
+#include "element.hpp"
+#include <memory>
+
+class Creature : public Card {
+public:
+    Creature(std::string name, int cost, int attack, int health, Element element);
+    virtual ~Creature() = default;
+
+    // Core methods (no getters, direct access)
+    void play(Player& owner, Player& opponent, void* target = nullptr) override;
+    void attack(Creature& target);
+    void resolve_combat(Creature& target);
+    void modify_health(int amount) { health_ += amount; }
+    bool alive() const { return health_ > 0; }
+    bool is_alive() const;
+    void take_damage(int amount);
+    void ready() { can_attack_ = true; }
+    void end_turn() { can_attack_ = true; }
+    virtual void start_turn() { petrified_ = false; }  // Clear petrify at start of creature's turn
+
+    // Events (override in derived classes)
+    virtual void on_play(Player& owner) { (void)owner; }
+    virtual void on_attack(Creature& target) { (void)target; }
+    virtual void on_death() {}
+    virtual bool can_attack_opponent_directly() const { return false; }  // Most creatures can't bypass enemy creatures
+    
+    // Clone method for polymorphic copying
+    virtual std::unique_ptr<Creature> clone() const = 0;
+
+    // Public fields for combat (simplified access)
+    int attack_;
+    int health_;
+    Element element_;
+    bool can_attack_ = false;
+    bool petrified_ = false;  // Tracks if creature is petrified (can't attack)
+};
+#endif
