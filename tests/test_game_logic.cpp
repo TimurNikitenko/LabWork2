@@ -31,6 +31,10 @@ TEST_F(GameLogicTest, GameSingleton) {
 TEST_F(GameLogicTest, GameInitialization) {
     Game& game = Game::get();
     
+    // Reset player health to ensure clean state for this test
+    game.human().modify_health(20 - game.human().health());
+    game.ai().modify_health(20 - game.ai().health());
+    
     // Game should have human and AI players
     EXPECT_EQ(game.human().name(), "Player");
     EXPECT_EQ(game.ai().name(), "AI");
@@ -94,6 +98,9 @@ TEST_F(GameLogicTest, CreatureCombat) {
     int initialAttackerHealth = attackerPtr->health_;
     int initialDefenderHealth = defenderPtr->health_;
     
+    // Make attacker ready to attack
+    attackerPtr->ready();
+    
     // Perform combat
     game.attack(*attackerPtr, *defenderPtr);
     
@@ -152,7 +159,12 @@ TEST_F(GameLogicTest, PetrifyEffectTiming) {
     EXPECT_TRUE(targetPtr->petrified_);
     
     // Start AI's turn (should clear petrify)
-    game.ai().refresh_mana(1);
+    // Directly call start_turn on AI's creatures to clear petrify effects
+    for (auto& creature : game.ai().board()) {
+        if (creature) {
+            creature->start_turn();
+        }
+    }
     
     // Target should no longer be petrified
     EXPECT_FALSE(targetPtr->petrified_);

@@ -9,6 +9,13 @@
 // Static member definition
 Game* Game::instance_ = nullptr;
 
+void Game::reset_instance() {
+    if (instance_) {
+        delete instance_;
+        instance_ = nullptr;
+    }
+}
+
 void Game::start_game() {
     deck_.shuffle();
     
@@ -215,22 +222,8 @@ Creature* Game::find_weakest_enemy(const Player& opponent) const {
 }
 
 void Game::attack(Creature& attacker, Creature& target) {
-    int damage = attacker.attack_ + 
-        ElementUtils::combat_modifier(attacker.element_, target.element_);
-    
-
-    std::string attacker_name = attacker.name_;
-    std::string target_name = target.name_;
-    
-    std::cout << attacker_name << " deals " << damage << " damage to " 
-              << target_name << std::endl;
-    
-    // Trigger on_attack ability before dealing damage
-    attacker.on_attack(target);
-    
-    target.take_damage(damage);
-    attacker.can_attack_ = false; 
-   
+    // Use the creature's attack method which handles mutual damage
+    attacker.attack(target);
 }
 
 void Game::attack_player(Creature& attacker, Player& target) {

@@ -20,14 +20,27 @@ void Creature::play(Player& owner, Player& opponent, void* target) {
 void Creature::attack(Creature& target) {
     if (!can_attack_ || petrified_) return;
 
-    int damage = attack_ + 
-                 ElementUtils::combat_modifier(element_, target.element_);
-    
     // Trigger on_attack ability before dealing damage
     on_attack(target);
     
-    target.take_damage(damage);
+    // Resolve combat (both creatures take damage)
+    resolve_combat(target);
+    
     can_attack_ = false;
+}
+
+void Creature::resolve_combat(Creature& target) {
+    // Calculate damage dealt by attacker
+    int attackerDamage = attack_ + 
+                        ElementUtils::combat_modifier(element_, target.element_);
+    
+    // Calculate damage dealt by defender
+    int defenderDamage = target.attack_ + 
+                        ElementUtils::combat_modifier(target.element_, element_);
+    
+    // Both creatures take damage
+    target.take_damage(attackerDamage);
+    take_damage(defenderDamage);
 }
 
 void Creature::take_damage(int amount) {

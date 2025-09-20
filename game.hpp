@@ -32,6 +32,9 @@ public:
         if (!instance_) instance_ = new Game();
         return *instance_;
     }
+    
+    // Reset singleton instance (for testing)
+    static void reset_instance();
 
     // Core Game Loop
     void human_play_phase();
